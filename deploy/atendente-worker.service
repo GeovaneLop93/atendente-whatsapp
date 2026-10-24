@@ -1,0 +1,27 @@
+# Worker do Atendente — consome a fila e responde (motor OAuth -> Evolution).
+# INSTALAR (pendência do Geovane). Sem este serviço, as mensagens entram mas ninguém
+# responde. Precisa do mesmo usuário com sessão OAuth do Claude/Codex disponível.
+[Unit]
+Description=Atendente WhatsApp (piloto) - worker
+After=network-online.target atendente.service
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=atendente
+WorkingDirectory=/opt/staging/atendente
+EnvironmentFile=/opt/staging/atendente/.env
+ExecStart=/opt/staging/atendente/.venv/bin/python -m app.worker
+Restart=on-failure
+RestartSec=3
+# systemctl stop mata o worker E os processos-filho do CLI do motor
+KillMode=control-group
+
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/opt/staging/atendente/data /opt/staging/atendente/logs
+
+[Install]
+WantedBy=multi-user.target

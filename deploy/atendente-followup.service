@@ -1,0 +1,18 @@
+# Passada única do follow-up. Disparado pelo atendente-followup.timer.
+# INSTALAR (pendência do Geovane).
+[Unit]
+Description=Atendente WhatsApp (piloto) - follow-up (oneshot)
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=atendente
+WorkingDirectory=/opt/staging/atendente
+EnvironmentFile=/opt/staging/atendente/.env
+ExecStart=/opt/staging/atendente/.venv/bin/python -m app.followup
+
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/opt/staging/atendente/data /opt/staging/atendente/logs

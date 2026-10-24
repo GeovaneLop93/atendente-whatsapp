@@ -1,0 +1,15 @@
+# Dispara o follow-up periodicamente. A rotina já respeita a janela noturna de SP e é
+# idempotente, então rodar de 15 em 15 min é seguro (não duplica).
+# INSTALAR (pendência do Geovane):
+#   systemctl enable --now atendente-followup.timer
+[Unit]
+Description=Atendente WhatsApp (piloto) - timer do follow-up
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=15min
+Persistent=true
+Unit=atendente-followup.service
+
+[Install]
+WantedBy=timers.target

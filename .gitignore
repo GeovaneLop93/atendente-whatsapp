@@ -1,0 +1,13 @@
+# segredos — NUNCA versionar
+.env
+
+# runtime
+.venv/
+__pycache__/
+*.pyc
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+logs/*.log
+provas/*.out

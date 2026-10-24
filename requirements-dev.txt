@@ -1,0 +1,4 @@
+# Dependências SÓ de teste (não entram em runtime).
+# pgserver embute um servidor Postgres em user-space para provas/prova_postgres.sh —
+# nenhum Postgres de sistema, nenhum root. Veja RELATORIO.md "Rodada 2".
+pgserver==0.1.4

@@ -1,0 +1,26 @@
+# Recebedor HTTP do Atendente (FastAPI/uvicorn) em 127.0.0.1:8895.
+# INSTALAR (pendência do Geovane — exige root). Ver README "Pendências do Geovane".
+# Ajuste User=/caminho se o diretório final não for /opt/staging/atendente.
+[Unit]
+Description=Atendente WhatsApp (piloto) - webhook FastAPI
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=atendente
+WorkingDirectory=/opt/staging/atendente
+EnvironmentFile=/opt/staging/atendente/.env
+ExecStart=/opt/staging/atendente/.venv/bin/uvicorn app.webhook:app --host 127.0.0.1 --port 8895
+Restart=on-failure
+RestartSec=3
+
+# Endurecimento
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/opt/staging/atendente/data /opt/staging/atendente/logs
+
+[Install]
+WantedBy=multi-user.target

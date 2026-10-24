@@ -1,0 +1,56 @@
+# Prova de execução — revisar_qualificacao_99 — 2026-10-23
+
+## PROVA 1 (sem REVISAO_MOTOR_MODELO)
+=== Bateria determinística (4 critérios da #99) ===
+  ok [A-nome-nao-inferido] 'tenho uma dúvida sobre os preços' esperado=None obtido=None
+  ok [A-nome-nao-inferido] 'oi, tudo bem? queria uma informação' esperado=None obtido=None
+  ok [A-nome-nao-inferido] 'ana paula' esperado=None obtido=None
+  ok [A-nome-nao-inferido] 'vi o anúncio de vocês' esperado=None obtido=None
+  ok [A-nome-nao-inferido] 'quero agendar uma consulta' esperado=None obtido=None
+  ok [A-nome-nao-inferido] 'meu nome é beatriz' esperado='Beatriz' obtido='Beatriz'
+  ok [A-nome-nao-inferido] 'me chamo joão' esperado='João' obtido='João'
+  ok [B-negacao-cidade] 'não moro em curitiba' esperado=None obtido=None
+  ok [B-negacao-cidade] 'nunca morei em são paulo' esperado=None obtido=None
+  ok [B-negacao-cidade] 'moro em curitiba' esperado='Curitiba' obtido='Curitiba'
+  ok [C-correcao-explicita] 'não moro em curitiba, moro em pato branco' esperado='Pato Branco' obtido='Pato Branco'
+  ok [C-correcao-explicita] 'moro em curitiba, não moro em pato branco' esperado='Curitiba' obtido='Curitiba'
+  ok [D-promocao-4-campos] 'meu nome é ana, quero botox, moro em curitiba, prefiro depois das 18h' esperado=True obtido=True
+  ok [D-promocao-4-campos] 'meu nome é ana, quero botox, moro em curitiba' esperado=False obtido=False
+  ok [D-promocao-4-campos] 'quero botox, moro em curitiba, depois das 18h' esperado=False obtido=False
+  ok [D-promocao-4-campos] 'tenho uma dúvida' esperado=False obtido=False
+--- 16/16 TODOS OK ---
+
+=== Camada de motor (OAuth-CLI) ===
+{
+  "status": "abstido",
+  "motivo": "REVISAO_MOTOR_MODELO não definido. Este harness NÃO escolhe modelo por conta própria nem cria alias. Defina com o identificador REAL confirmado no CLI OAuth do Codex/ChatGPT."
+}
+RC=0
+
+## PROVA 2 (REVISAO_MOTOR_MODELO=gpt-4o-mini, codex ausente)
+=== Bateria determinística (4 critérios da #99) ===
+  ok [A-nome-nao-inferido] 'tenho uma dúvida sobre os preços' esperado=None obtido=None
+  ok [A-nome-nao-inferido] 'oi, tudo bem? queria uma informação' esperado=None obtido=None
+  ok [A-nome-nao-inferido] 'ana paula' esperado=None obtido=None
+  ok [A-nome-nao-inferido] 'vi o anúncio de vocês' esperado=None obtido=None
+  ok [A-nome-nao-inferido] 'quero agendar uma consulta' esperado=None obtido=None
+  ok [A-nome-nao-inferido] 'meu nome é beatriz' esperado='Beatriz' obtido='Beatriz'
+  ok [A-nome-nao-inferido] 'me chamo joão' esperado='João' obtido='João'
+  ok [B-negacao-cidade] 'não moro em curitiba' esperado=None obtido=None
+  ok [B-negacao-cidade] 'nunca morei em são paulo' esperado=None obtido=None
+  ok [B-negacao-cidade] 'moro em curitiba' esperado='Curitiba' obtido='Curitiba'
+  ok [C-correcao-explicita] 'não moro em curitiba, moro em pato branco' esperado='Pato Branco' obtido='Pato Branco'
+  ok [C-correcao-explicita] 'moro em curitiba, não moro em pato branco' esperado='Curitiba' obtido='Curitiba'
+  ok [D-promocao-4-campos] 'meu nome é ana, quero botox, moro em curitiba, prefiro depois das 18h' esperado=True obtido=True
+  ok [D-promocao-4-campos] 'meu nome é ana, quero botox, moro em curitiba' esperado=False obtido=False
+  ok [D-promocao-4-campos] 'quero botox, moro em curitiba, depois das 18h' esperado=False obtido=False
+  ok [D-promocao-4-campos] 'tenho uma dúvida' esperado=False obtido=False
+--- 16/16 TODOS OK ---
+
+=== Camada de motor (OAuth-CLI) ===
+{
+  "status": "motor_indisponivel",
+  "modelo": "gpt-4o-mini",
+  "motivo": "binário 'codex' não encontrado no PATH deste runtime"
+}
+RC=0
